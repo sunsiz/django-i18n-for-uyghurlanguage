@@ -1,0 +1,23 @@
+{% load i18n %}
+<html  dir="{{ LANGUAGE_BIDI|yesno:"rtl,ltr" }}">
+    <head>
+        <title>this is a i18n</title>
+        <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+        <script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+       <div style="float:{{LANGUAGE_START}}" class="col-md-9 bg-primary">
+       <div class="col-md-4 bg-primary pull-left">{{almas}}</div>
+       {% trans 'hello world' %}<span class="glyphicon glyphicon-arrow-{{ LANGUAGE_END }} pull-right"></span> 
+       </div>
+       <div class="col-md-3">
+       <form action="{% url 'set_language' %}" method="post" id="language">
+{% csrf_token %}
+    <input type="hidden" name="language" id="languageval">
+    <div class="btn btn-danger" data-lang="en" onclick="javascript:$('#languageval').val('ar');$('#language').submit();" >ug</div>
+    <div class="btn btn-success" data-lang="zh-ug" onclick="javascript:$('#languageval').val('en');$('#language').submit();" >English</div>
+</form> 
+       </div>
+    </body>
+</html>
